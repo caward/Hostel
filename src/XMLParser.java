@@ -6,7 +6,7 @@ import java.io.File;
 
 public class XMLParser {
 	
-	LinkedList<Hostel> hostels;
+	static LinkedList<Hostel> hostels= new LinkedList<Hostel>();
 	//public void parser()
 	public static void main(String argv[])
 	{
@@ -38,40 +38,44 @@ public class XMLParser {
 					System.out.println("HostelName : " + tagInfo(element,"name",i) );
 					System.out.println("Street : " + tagInfo(element,"street",i));
 					System.out.println("phone: " + tagInfo(element,"phone",i));
-					System.out.println("room : " + tagInfo(element,"city",i));
-					System.out.println("room : " + tagInfo(element,"state",i));
-					System.out.println("room : " + tagInfo(element,"postal_code",i));
-					System.out.println("room : " + tagInfo(element,"country",i));
-					System.out.println("room : " + element.getElementsByTagName("email").item(i).getTextContent());
-					System.out.println("room : " + element.getElementsByTagName("facebook").item(i).getTextContent());
-					System.out.println("room : " + element.getElementsByTagName("web").item(i).getTextContent());
-					System.out.println("room : " + element.getElementsByTagName("check_in_time").item(i).getTextContent());
-					System.out.println("room : " + element.getElementsByTagName("check_out_time").item(i).getTextContent());
-					System.out.println("room : " + element.getElementsByTagName("smoking").item(i).getTextContent());
-					System.out.println("room : " + element.getElementsByTagName("alcohol").item(i).getTextContent());
+					System.out.println("City : " + tagInfo(element,"city",i));
+					System.out.println("State : " + tagInfo(element,"state",i));
+					System.out.println("Postal Code : " + tagInfo(element,"postal_code",i));
+					System.out.println("Country : " + tagInfo(element,"country",i));
+					System.out.println("Email : " + tagInfo(element,"email",i));
+					System.out.println("Facebook : " + tagInfo(element,"facebook",i));
+					System.out.println("website : " + tagInfo(element,"web",i));
+					System.out.println("Checkin : " + tagInfo(element,"check_in_time",i));
+					System.out.println("Checkout : " + tagInfo(element,"check_out_time",i));
+					System.out.println("Smoking : " + tagInfo(element,"smoking",i));
+					System.out.println("Alcohol : " + tagInfo(element,"alcohol",i));
 					
 					
 					NodeList list2 = doc.getElementsByTagName("availability");
 					for (int j = 0; j < list2.getLength(); j++)
 					{
+						//Bedroom bedroom = new Bedroom();
 						Node node2= list2.item(j);
 						System.out.println("\nCurrent Element :" + node2.getNodeName());
 
 						if (node2.getNodeType() == Node.ELEMENT_NODE) 
 						{
 							Element element2 = (Element) node;
-							System.out.println("date : " + element2.getElementsByTagName("date").item(j).getTextContent());
-							System.out.println("room : " + element2.getElementsByTagName("room").item(j).getTextContent());
-							System.out.println("bed : " + element2.getElementsByTagName("bed").item(j).getTextContent());
-							System.out.println("price : " + element2.getElementsByTagName("price").item(j).getTextContent());
+							System.out.println("date : " + tagInfo(element2,"date",j));
+							System.out.println("room : " + tagInfo(element2,"room",j));
+							System.out.println("bed : " + tagInfo(element2,"bed",j));
+							System.out.println("price : " + tagInfo(element2,"price",j));
 						}
+						//hostel.addBedroom(bedroom);
 					}
 				}
+				//hostels.add(hostel);
 			}
 		} catch (Exception e)
 	    {
 	    	e.printStackTrace();
 	    }
+		
 	    
 	}
 	private static String tagInfo(Element element, String info, int index)

@@ -14,7 +14,7 @@ public class Hostel {
 	private String checkOutTime ="";
 	private String smoking ="";
 	private String alcohol ="";
-	LinkedList<Bedroom> bedroom;
+	LinkedList<Bedroom> bedrooms;
 	
 	public void setName(String name)
 	{
@@ -129,6 +129,14 @@ public class Hostel {
 		return this.alcohol;
 	}
 	
+	public void addBedroom(Bedroom bedroom)
+	{
+		bedrooms.add(bedroom);
+	}
+	public void generalsearch()
+	{
+		
+	}
 	
 	
 //	private String name ="";
