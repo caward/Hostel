@@ -10,8 +10,31 @@ public class HostelSystem
 	{
 		for(Hostel h:hostels)
 		{
-			System.out.println(h.getName()+" "+h.getCity());
 			h.generalsearch();
+		}
+	}
+	
+	public void search(String city)
+	{
+		for(Hostel h:hostels)
+		{
+			if(h.getCity().equalsIgnoreCase(city))
+			{
+				h.generalsearch();
+			}
+			
+		}
+	}
+	
+	public void search(String city, int startDate, int endDate)
+	{
+		for(Hostel h:hostels)
+		{
+			if(h.getCity().equalsIgnoreCase(city))
+			{
+				h.availableSearch(startDate, endDate);
+			}
+			
 		}
 	}
 	
@@ -25,6 +48,10 @@ public class HostelSystem
 		
 	}
 	
+	public void setHostels(LinkedList<Hostel> hostels)
+	{
+		this.hostels = hostels;
+	}
 	public boolean isCustomer(String email)
 	{
 		for(User u:users)

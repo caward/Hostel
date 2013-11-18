@@ -1,4 +1,7 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Arrays;
+//import java.util.Iterator;
+import java.util.ListIterator;
 public class Hostel {
 	private String hostelName ="";
 	private String street ="";
@@ -14,7 +17,7 @@ public class Hostel {
 	private String checkOutTime ="";
 	private String smoking ="";
 	private String alcohol ="";
-	LinkedList<Bedroom> bedrooms;
+	ArrayList<Bedroom> bedrooms;
 	
 	public void setName(String name)
 	{
@@ -133,9 +136,113 @@ public class Hostel {
 	{
 		bedrooms.add(bedroom);
 	}
+	
+	public void sortBedrooms()
+	{
+		Bedroom[] beds = bedrooms.toArray(new Bedroom[bedrooms.size()]);
+		beds=insertionSort(beds);
+		bedrooms.clear();
+		bedrooms.addAll(Arrays.asList(beds));
+	}
+	
+	private Bedroom[] insertionSort(Bedroom[] bed)
+	{
+		int j;
+		Bedroom b;
+		for (int i = 1; i < bed.length; i++)
+		{
+			j = i;
+			b = bed[i];
+			while ((j > 0) && (bed[j-1].getDate() > b.getDate()))
+			{
+				bed[j] = bed[j-1];
+				j--;
+			}
+			  bed[j] = b;
+		}
+		return bed;
+	}
+	
 	public void generalsearch()
 	{
+		System.out.println(getName()+" "+getCity());
+		ListIterator<Bedroom> litr = bedrooms.listIterator();
+		int date=0;
+		int min=0;
+		int max = 0;
+		int count=0;
+		int tempPrice=0;
+		Bedroom bed = litr.next();
+		date=bed.getDate();
+		min=bed.getPrice();
+		max=bed.getPrice();
+		count++;
+		while(litr.hasNext())
+		{
+	         bed = litr.next();
+	         if(bed.getDate()==date)
+	         {
+	        	 count++;		//Counts number of beds for a particular day
+	        	 //Finds max and min bed prices for that day
+	        	 tempPrice=bed.getPrice();
+	        	 min = tempPrice<min ? tempPrice:min;
+	        	 max = tempPrice>max ? tempPrice:max;
+	         }
+	         else
+	         {
+	        	 System.out.println(formatDate(date)+" to "+formatDate(date+1)+": "+count+" beds between $"+min+" and $"+max);
+	        	 date = bed.getDate();
+	        	 count = 1;
+	        	 min = bed.getPrice();
+	        	 max = bed.getPrice(); 	 
+	         }
+	     }
+		System.out.println(formatDate(date)+" to "+formatDate(date+1)+": "+count+" beds between $"+min+" and $"+max);
+	}
+	
+	public void availableSearch(int startDate, int endDate)
+	{
+		System.out.println(getName()+" "+getCity());
+		ListIterator<Bedroom> litr = bedrooms.listIterator();
+		int date=startDate;
+		int min=0;
+		int max = 0;
+		int count=0;
+		int tempPrice=0;
+		Bedroom bed = litr.next();
+		date=bed.getDate();
+		min=bed.getPrice();
+		max=bed.getPrice();
+		count++;
+		while(litr.hasNext())
+		{
+	         bed = litr.next();
+	         if(bed.getDate()==date)
+	         {
+	        	 count++;		//Counts number of beds for a particular day
+	        	 //Finds max and min bed prices for that day
+	        	 tempPrice=bed.getPrice();
+	        	 min = tempPrice<min ? tempPrice:min;
+	        	 max = tempPrice>max ? tempPrice:max;
+	         }
+	         else
+	         {
+	        	 System.out.println(formatDate(date)+" to "+formatDate(date+1)+": "+count+" beds between $"+min+" and $"+max);
+	        	 date = bed.getDate();
+	        	 count = 1;
+	        	 min = bed.getPrice();
+	        	 max = bed.getPrice(); 	 
+	         }
+	     }
+		System.out.println(formatDate(date)+" to "+formatDate(date+1)+": "+count+" beds between $"+min+" and $"+max);
 		
+	}
+	
+	private String formatDate(int i)
+	{
+		String date = String.valueOf(i);
+		date= date.substring(4,6)+"/"+date.substring(6, 8)+"/"+date.substring(0, 4);
+		return date;
 	}
 	
 	

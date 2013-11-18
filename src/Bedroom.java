@@ -4,7 +4,16 @@ public class Bedroom {
 	private int room = 0;
 	private boolean available = true;
 	private int price = 0;
+	private int date=0;
 	
+	public int getDate() {
+		return date;
+	}
+
+	public void setDate(int date) {
+		this.date = date;
+	}
+
 	public int getBed()
 	{
 		return bed;

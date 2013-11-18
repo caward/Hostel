@@ -1,12 +1,12 @@
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.io.File;
 
 
 public class XMLParser {
 	
-	static LinkedList<Hostel> hostels= new LinkedList<Hostel>();
+	static ArrayList<Hostel> hostels= new ArrayList<Hostel>();
 	//public void parser()
 	public static void main(String argv[])
 	{
@@ -69,6 +69,7 @@ public class XMLParser {
 						//hostel.addBedroom(bedroom);
 					}
 				}
+				//hostel.sortBedrooms();
 				//hostels.add(hostel);
 			}
 		} catch (Exception e)
