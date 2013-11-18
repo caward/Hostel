@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.io.File;
 
 
+
 public class XMLParser {
 	
 	static ArrayList<Hostel> hostels= new ArrayList<Hostel>();
@@ -12,7 +13,7 @@ public class XMLParser {
 	{
 		try
 		{
-			File file = new File("src/hostel.xml");
+			File file = new File("src/hostel1.xml");
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document doc = builder.parse(file);
@@ -49,6 +50,8 @@ public class XMLParser {
 					System.out.println("Checkout : " + tagInfo(element,"check_out_time",i));
 					System.out.println("Smoking : " + tagInfo(element,"smoking",i));
 					System.out.println("Alcohol : " + tagInfo(element,"alcohol",i));
+					System.out.println("Deadline : " + tagInfo(element,"cancellation_deadline",i));
+					System.out.println("Penalty : " + tagInfo(element,"cancellation_penalty",i));
 					
 					
 					NodeList list2 = doc.getElementsByTagName("availability");

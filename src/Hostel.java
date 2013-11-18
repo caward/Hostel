@@ -1,7 +1,6 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-//import java.util.Iterator;
 import java.util.ListIterator;
+
 public class Hostel {
 	private String hostelName ="";
 	private String street ="";
@@ -17,6 +16,22 @@ public class Hostel {
 	private String checkOutTime ="";
 	private String smoking ="";
 	private String alcohol ="";
+	private int deadline=0;
+	private String penalty="";
+	
+	public int getDeadline() {
+		return deadline;
+	}
+	public void setDeadline(int deadline) {
+		this.deadline = deadline;
+	}
+	public String getPenalty() {
+		return penalty;
+	}
+	public void setPenalty(String penalty) {
+		this.penalty = penalty;
+	}
+
 	ArrayList<Bedroom> bedrooms;
 	
 	public void setName(String name)
@@ -137,31 +152,31 @@ public class Hostel {
 		bedrooms.add(bedroom);
 	}
 	
-	public void sortBedrooms()
-	{
-		Bedroom[] beds = bedrooms.toArray(new Bedroom[bedrooms.size()]);
-		beds=insertionSort(beds);
-		bedrooms.clear();
-		bedrooms.addAll(Arrays.asList(beds));
-	}
-	
-	private Bedroom[] insertionSort(Bedroom[] bed)
-	{
-		int j;
-		Bedroom b;
-		for (int i = 1; i < bed.length; i++)
-		{
-			j = i;
-			b = bed[i];
-			while ((j > 0) && (bed[j-1].getDate() > b.getDate()))
-			{
-				bed[j] = bed[j-1];
-				j--;
-			}
-			  bed[j] = b;
-		}
-		return bed;
-	}
+//	public void sortBedrooms()
+//	{
+//		Bedroom[] beds = bedrooms.toArray(new Bedroom[bedrooms.size()]);
+//		beds=insertionSort(beds);
+//		bedrooms.clear();
+//		bedrooms.addAll(Arrays.asList(beds));
+//	}
+//	
+//	private Bedroom[] insertionSort(Bedroom[] bed)
+//	{
+//		int j;
+//		Bedroom b;
+//		for (int i = 1; i < bed.length; i++)
+//		{
+//			j = i;
+//			b = bed[i];
+//			while ((j > 0) && (bed[j-1].getDate() > b.getDate()))
+//			{
+//				bed[j] = bed[j-1];
+//				j--;
+//			}
+//			  bed[j] = b;
+//		}
+//		return bed;
+//	}
 	
 	public void generalsearch()
 	{
@@ -205,37 +220,65 @@ public class Hostel {
 		System.out.println(getName()+" "+getCity());
 		ListIterator<Bedroom> litr = bedrooms.listIterator();
 		int date=startDate;
-		int min=0;
+		int min=1000000;
 		int max = 0;
 		int count=0;
 		int tempPrice=0;
-		Bedroom bed = litr.next();
-		date=bed.getDate();
-		min=bed.getPrice();
-		max=bed.getPrice();
-		count++;
+		int done = 0;
+		Bedroom bed; //= litr.next();
+//		date=bed.getDate();
+//		min=bed.getPrice();
+//		max=bed.getPrice();
+		
 		while(litr.hasNext())
 		{
 	         bed = litr.next();
 	         if(bed.getDate()==date)
-	         {
-	        	 count++;		//Counts number of beds for a particular day
-	        	 //Finds max and min bed prices for that day
-	        	 tempPrice=bed.getPrice();
-	        	 min = tempPrice<min ? tempPrice:min;
-	        	 max = tempPrice>max ? tempPrice:max;
+	         {		
+	        	bed = litr.previous();
+	        	 while(litr.hasNext())
+	        	 {
+	        		 bed = litr.next();
+	        		 if(bed.getDate()==date)
+	        		 {
+	        			 if(bed.isAvailable()==true)
+	        			 {
+	        				 count++;		//Counts number of beds for a particular day
+	        				 //Finds max and min bed prices for that day
+	        				 tempPrice=bed.getPrice();
+	        				 min = tempPrice<min ? tempPrice:min;
+	        				 max = tempPrice>max ? tempPrice:max;
+	        			 }
+	        		 }
+	        		 else
+	        		 {
+	        			 if(count==0)
+	        			 {
+	        				 System.out.println(formatDate(date)+" to "+formatDate(date+1)+": No beds available");
+	        			 }
+	        			 else
+	        			 {
+	        				 System.out.println(formatDate(date)+" to "+formatDate(date+1)+": "+count+" available "+ (count==1?"bed":"beds") +" between $"+min+" and $"+max);
+	        			 }
+	        			 date = bed.getDate();
+	        			 if(date>=endDate)
+	        			 {
+	        				 done=1;
+	        				 date=0;
+	        			 }
+	        			 else
+	        			 {
+	        				 count = 1;
+	        				 min = bed.getPrice();
+	        				 max = bed.getPrice();
+	        			 } 	 
+	        		 }
+	        	 }if(done==0)
+	        	 {
+	        		 System.out.println(formatDate(date)+" to "+formatDate(date+1)+": "+count+" available "+(count==1?"bed":"beds")+" between $"+min+" and $"+max);
+	        	}
 	         }
-	         else
-	         {
-	        	 System.out.println(formatDate(date)+" to "+formatDate(date+1)+": "+count+" beds between $"+min+" and $"+max);
-	        	 date = bed.getDate();
-	        	 count = 1;
-	        	 min = bed.getPrice();
-	        	 max = bed.getPrice(); 	 
-	         }
-	     }
-		System.out.println(formatDate(date)+" to "+formatDate(date+1)+": "+count+" beds between $"+min+" and $"+max);
-		
+	    }
 	}
 	
 	private String formatDate(int i)
@@ -245,8 +288,4 @@ public class Hostel {
 		return date;
 	}
 	
-	
-//	private String name ="";
-	
-//	private String name ="";
 }
