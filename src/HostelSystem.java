@@ -1,9 +1,9 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class HostelSystem 
 {
-	LinkedList<User> users;
-	LinkedList<Hostel> hostels;
+	ArrayList<User> users=new ArrayList<User>();
+	ArrayList<Hostel> hostels;//initialized in xml
 	
 	
 	public void search()
@@ -43,12 +43,13 @@ public class HostelSystem
 		
 	}
 	
+	
 	public void addUser()
 	{
 		
 	}
 	
-	public void setHostels(LinkedList<Hostel> hostels)
+	public void setHostels(ArrayList<Hostel> hostels)
 	{
 		this.hostels = hostels;
 	}

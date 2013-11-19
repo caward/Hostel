@@ -18,6 +18,47 @@ public class Hostel {
 	private String alcohol ="";
 	private int deadline=0;
 	private String penalty="";
+	ArrayList<Bedroom> bedrooms=new ArrayList<Bedroom>();
+	ArrayList<Search> searches = new ArrayList<Search>();
+	
+	public boolean isAvailable(int room, int bed, int date)
+	{
+		for(Bedroom b:bedrooms)
+		{
+			if(b.getBed()==bed&&b.getDate()==date&&b.getRoom()==room){return b.isAvailable();}
+		}
+		return false;
+	}
+	
+	public void book(int start, int end, int numbed)
+	{
+		
+		int count = end-start;
+		int j=0;//counts to see if room is available all count days
+		for(Bedroom b:bedrooms)
+		{
+			Search s = new Search();
+			for(int i=0; i<count; i++)//this loop trys to see i 
+			{
+//				for(Search s: searches)
+//				{
+//					if(!s.contains(b.getBed(),b.getRoom()))//if bed with bed num and room not in search list
+//					{
+						if(isAvailable(b.getRoom(),b.getBed(),b.getDate()+i))
+						{
+							j++;
+						}
+//					}
+//				}
+			}
+			if(count==j)
+			{
+				s.add(b);
+				j=0;
+			}
+		}
+	}
+	
 	
 	public int getDeadline() {
 		return deadline;
@@ -32,7 +73,7 @@ public class Hostel {
 		this.penalty = penalty;
 	}
 
-	ArrayList<Bedroom> bedrooms;
+	
 	
 	public void setName(String name)
 	{
