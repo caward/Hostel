@@ -293,26 +293,29 @@ public class Hostel {
 	        		 }
 	        		 else
 	        		 {
-	        			 if(count==0)
+	        			 if(date!=0)
 	        			 {
-	        				 System.out.println(formatDate(date)+" to "+formatDate(date+1)+": No beds available");
-	        			 }
-	        			 else
-	        			 {
-	        				 System.out.println(formatDate(date)+" to "+formatDate(date+1)+": "+count+" available "+ (count==1?"bed":"beds") +" between $"+min+" and $"+max);
-	        			 }
-	        			 date = bed.getDate();
-	        			 if(date>=endDate)
-	        			 {
-	        				 done=1;
-	        				 date=0;
-	        			 }
-	        			 else
-	        			 {
-	        				 count = 1;
-	        				 min = bed.getPrice();
-	        				 max = bed.getPrice();
-	        			 } 	 
+	        				 if(count==0)
+	        				 {
+	        					 System.out.println(formatDate(date)+" to "+formatDate(date+1)+": No beds available");
+	        				 }
+	        				 else
+	        				 {
+	        					 System.out.println(formatDate(date)+" to "+formatDate(date+1)+": "+count+" available "+ (count==1?"bed":"beds") +" between $"+min+" and $"+max);
+	        				 }
+	        				 date = bed.getDate();
+	        				 if(date>=endDate)
+	        				 {
+	        					 done=1;
+	        					 date=0;
+	        				 }
+	        				 else
+	        				 {
+	        					 count = 1;
+	        					 min = bed.getPrice();
+	        					 max = bed.getPrice();
+	        				 } 
+	        			 }	 
 	        		 }
 	        	 }if(done==0)
 	        	 {
@@ -325,7 +328,7 @@ public class Hostel {
 	private String formatDate(int i)
 	{
 		String date = String.valueOf(i);
-		date= date.substring(4,6)+"/"+date.substring(6, 8)+"/"+date.substring(0, 4);
+		date= date.substring(4,6)+"/"+date.substring(6)+"/"+date.substring(0, 4);
 		return date;
 	}
 	
