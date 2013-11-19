@@ -109,7 +109,7 @@ public class XMLParser {
 					}
 				}
 				hostel.generalsearch(); //Remove later
-				hostel.availableSearch(20140702, 20140704);
+				hostel.availableSearch(20140704, 20140705);//remove later
 				//hostel.sortBedrooms();
 				//hostels.add(hostel);
 			}

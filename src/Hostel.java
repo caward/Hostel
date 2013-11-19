@@ -271,18 +271,18 @@ public class Hostel {
 //		min=bed.getPrice();
 //		max=bed.getPrice();
 		
-		while(litr.hasNext())
+		while(litr.hasNext())//loops to correct date
 		{
 	         bed = litr.next();
 	         if(bed.getDate()==date)
 	         {		
-	        	bed = litr.previous();
+	        	bed = litr.previous();//first correct date
 	        	 while(litr.hasNext())
 	        	 {
 	        		 bed = litr.next();
-	        		 if(bed.getDate()==date)
+	        		 if(bed.getDate()==date)//check if this bed has the date needed
 	        		 {
-	        			 if(bed.isAvailable()==true)
+	        			 if(bed.isAvailable()==true)//sees if bed is available
 	        			 {
 	        				 count++;		//Counts number of beds for a particular day
 	        				 //Finds max and min bed prices for that day
@@ -291,9 +291,9 @@ public class Hostel {
 	        				 max = tempPrice>max ? tempPrice:max;
 	        			 }
 	        		 }
-	        		 else
+	        		 else//if bed date and date don't match all beds for that particular day have been counted and will be printed
 	        		 {
-	        			 if(date!=0)
+	        			 if(date!=0)//if date is zero no need to print anything
 	        			 {
 	        				 if(count==0)
 	        				 {
@@ -303,8 +303,8 @@ public class Hostel {
 	        				 {
 	        					 System.out.println(formatDate(date)+" to "+formatDate(date+1)+": "+count+" available "+ (count==1?"bed":"beds") +" between $"+min+" and $"+max);
 	        				 }
-	        				 date = bed.getDate();
-	        				 if(date>=endDate)
+	        				 date = bed.getDate();//change date for next day
+	        				 if(date>=endDate)//if endDate reached, stop and print out last listing
 	        				 {
 	        					 done=1;
 	        					 date=0;
