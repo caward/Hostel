@@ -3,8 +3,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class User {
-	private static int totalUsers=0;
-	private int userId = 0;
+//	private static int totalUsers=0;
+	private static int userId = 0;
 	private String fname="";
 	private String lname="";
 	private String email="";
@@ -18,7 +18,7 @@ public class User {
 		this.fname = fname;
 		this.lname = lname;
 		this.email = email;
-		userId=++totalUsers;
+		userId+=1;
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
 		created = dateFormat.format(cal.getTime());

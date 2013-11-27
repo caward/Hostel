@@ -29,9 +29,9 @@ public class H21 {
 				
 				if(tokens[1].equalsIgnoreCase("admin"))
 				{
-					hostelSys.addHostel(parser.load(tokens[3]));
-					
+					hostelSys.addHostel(parser.load(tokens[3]));				
 				}
+			}
 		}
 		if(tokens[0].equalsIgnoreCase("h21"))
 		{
@@ -74,7 +74,7 @@ public class H21 {
 					}
 					else if(tokens[2].equalsIgnoreCase("cancel"))
 					{
-						hostelSys.cancel(Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
+						hostelSys.cancel(Integer.parseInt(tokens[4]));
 					}
 					else if(tokens[2].equalsIgnoreCase("view"))
 					{
@@ -89,7 +89,16 @@ public class H21 {
 			}
 			else if(tokens[1].equalsIgnoreCase("user"))
 			{
-				
+				if(tokens[2].equalsIgnoreCase("add"))
+				{
+					if (tokens.length==9)
+					{
+						if(!hostelSys.isUser(tokens[8]))
+						{
+							User user1 = new User(tokens[4],tokens[6],tokens[8]);
+						}
+					}
+				}
 			}
 			else if(tokens[1].equalsIgnoreCase("admin"))
 			{

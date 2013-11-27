@@ -134,7 +134,7 @@ public class HostelSystem
 	{
 		this.hostels = hostels;
 	}
-	public boolean isCustomer(String email)
+	public boolean isUser(String email)
 	{
 		for(User u:users)
 		{
@@ -147,5 +147,13 @@ public class HostelSystem
 		}
 		return false;
 	}
+
+	public void cancel(int bookid) {
+		
+		
+	}
+
+
+	
 	
 }
