@@ -9,6 +9,7 @@ public class H21 {
 	public static void main(String[] args)
 	{
 		HostelSystem hostelSys = new HostelSystem();
+		XMLParser parser = new XMLParser();
 		// TODO Auto-generated method stub
 		String line = "";
 		Scanner stdin = new Scanner(System.in);
@@ -17,9 +18,29 @@ public class H21 {
 		line=stdin.nextLine();
 		String delims = "[ ]+";
 		String[] tokens = line.split(delims);
+		while(hostelSys.getHostels().isEmpty())
+		{
+			System.out.println("No hostels Loaded. ENTER:");
+			System.out.println("h21 admin --load FILEPATH");
+			line=stdin.nextLine();
+			tokens = line.split(delims);
+			if(tokens[0].equalsIgnoreCase("h21"))
+			{
+				
+				if(tokens[1].equalsIgnoreCase("admin"))
+				{
+					hostelSys.addHostel(parser.load(tokens[3]));
+					
+				}
+		}
 		if(tokens[0].equalsIgnoreCase("h21"))
 		{
-			if(tokens[1].equalsIgnoreCase("search"))
+			
+			if(tokens[1].equalsIgnoreCase("admin"))
+			{
+				
+			}
+			else if(tokens[1].equalsIgnoreCase("search"))
 			{
 				if(tokens.length==2)
 				{
@@ -47,6 +68,14 @@ public class H21 {
 					if(tokens[2].equalsIgnoreCase("add"))
 					{
 						hostelSys.book(Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
+					}
+					else if(tokens[2].equalsIgnoreCase("cancel"))
+					{
+						hostelSys.cancel(Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
+					}
+					else if(tokens[2].equalsIgnoreCase("view"))
+					{
+						hostelSys.view(Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
 					}
 					
 				}

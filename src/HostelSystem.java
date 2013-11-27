@@ -4,10 +4,26 @@ import java.util.ArrayList;
 public class HostelSystem 
 {
 	ArrayList<User> users=new ArrayList<User>();
-	ArrayList<Hostel> hostels;//initialized in xml
+	ArrayList<Hostel> hostels = new ArrayList<Hostel>();//initialized in xml
+	ArrayList<Booking> bookings = new ArrayList<Booking>();
 	
 	
+	public void addHostel(Hostel h)
+	{
+		hostels.add(h);
+	}
 	
+	public ArrayList<Hostel> getHostels() {
+		return hostels;
+	}
+	public boolean isUser(int id)
+	{
+		for(User user:users)
+		{
+			if(user.getUserId()==id){return true;}	
+		}
+		return false;
+	}
 	public void search()
 	{
 		for(Hostel h:hostels)
@@ -53,7 +69,38 @@ public class HostelSystem
 	
 	public void book(int searchId, int userId)
 	{
-		
+		Search realSearch=null;
+		if(isUser(userId))
+		{
+			for(Hostel h:hostels)
+			{
+				ArrayList<Search> searches;
+				searches = h.getSearches();
+				for(Search s:searches)
+				{
+					if(s.getId() == searchId)
+					{
+						realSearch = s;
+					}
+				}
+			}
+			if(realSearch!=null)
+			{
+				Booking booking= new Booking();
+				booking.setBeds(realSearch.getBeds());
+				bookings.add(booking);
+				booking
+			}
+			else
+			{
+				System.out.println("No search found");
+			}
+			
+		}
+		else
+		{
+			System.out.println("No user found");
+		}
 	}
 	
 	

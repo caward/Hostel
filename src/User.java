@@ -29,6 +29,11 @@ public class User {
 	{
 		System.out.println("user_id: " +userId+"/n Name: "+fname+" "+lname+"/n Email: "+email+"/n Date Created: "+created);	
 	}
+	
+	public int getUserId()
+	{
+		return userId;
+	}
 
 	public String getFname() {
 		return fname;

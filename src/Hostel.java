@@ -21,6 +21,11 @@ public class Hostel {
 	ArrayList<Bedroom> bedrooms=new ArrayList<Bedroom>();
 	ArrayList<Search> searches = new ArrayList<Search>();
 	
+	public ArrayList<Search> getSearches()
+	{
+		return searches;
+	}
+	
 	public boolean isAvailable(int room, int bed, int date)
 	{
 		for(Bedroom b:bedrooms)
