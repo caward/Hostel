@@ -8,12 +8,13 @@ import java.io.File;
 public class XMLParser {
 	
 	static ArrayList<Hostel> hostels= new ArrayList<Hostel>();
+	Hostel hostel;
 	//public void parser()
-	public static void main(String argv[])
+	public Hostel load(String path)
 	{
 		try
 		{
-			File file = new File("src/hostel1.xml");
+			File file = new File(path);
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document doc = builder.parse(file);
@@ -105,19 +106,16 @@ public class XMLParser {
 							bedroom.setPrice(Integer.parseInt(tagInfo(element2,"price",j)));
 							System.out.println("price : " + bedroom.getPrice());
 						}
+						bedroom.setHostelName(hostel.getName());
 						hostel.addBedroom(bedroom);
 					}
 				}
-				hostel.generalsearch(); //Remove later
-				hostel.availableSearch(20140704, 20140705);//remove later
-				//hostel.sortBedrooms();
-				//hostels.add(hostel);
 			}
 		} catch (Exception e)
 	    {
 	    	e.printStackTrace();
 	    }
-		
+		return hostel;
 	    
 	}
 	private static String tagInfo(Element element, String info, int index)

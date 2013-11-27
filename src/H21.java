@@ -1,0 +1,73 @@
+import java.util.Scanner;
+
+
+public class H21 {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args)
+	{
+		HostelSystem hostelSys = new HostelSystem();
+		// TODO Auto-generated method stub
+		String line = "";
+		Scanner stdin = new Scanner(System.in);
+//		while 
+		System.out.println("Please enter file path for hotels ");
+		line=stdin.nextLine();
+		String delims = "[ ]+";
+		String[] tokens = line.split(delims);
+		if(tokens[0].equalsIgnoreCase("h21"))
+		{
+			if(tokens[1].equalsIgnoreCase("search"))
+			{
+				if(tokens.length==2)
+				{
+					hostelSys.search();
+				}
+				else if(tokens.length==4)
+				{
+					hostelSys.search(tokens[3]);
+				}
+				else if(tokens.length==8)
+				{
+					hostelSys.search(tokens[3],Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
+				}
+				else if(tokens.length==10)
+				{
+					hostelSys.search(tokens[3],Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]),Integer.parseInt(tokens[9]));
+				}
+			
+			
+			}
+			else if(tokens[1].equalsIgnoreCase("book"))
+			{
+				if(tokens.length==7)
+				{
+					if(tokens[2].equalsIgnoreCase("add"))
+					{
+						hostelSys.book(Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
+					}
+					
+				}
+				else
+				{
+					System.out.println("Invalid command. Please try again");
+				}
+			}
+			else if(tokens[1].equalsIgnoreCase("user"))
+			{
+				
+			}
+			else if(tokens[1].equalsIgnoreCase("admin"))
+			{
+				
+			}
+		}
+		else
+		{
+			System.out.println("Did not start Command with h21. Please try again");
+		}
+	}
+
+}

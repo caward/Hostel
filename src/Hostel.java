@@ -30,35 +30,90 @@ public class Hostel {
 		return false;
 	}
 	
-	public void book(int start, int end, int numbed)
+	public void realSearch(int start, int end, int numbed)
 	{
 		
 		int count = end-start;
 		int j=0;//counts to see if room is available all count days
-		for(Bedroom b:bedrooms)
+		ListIterator<Bedroom> litr = bedrooms.listIterator();
+		while(litr.hasNext())
 		{
-			Search s = new Search();
-			for(int i=0; i<count; i++)//this loop trys to see i 
+			for(Bedroom b:bedrooms)
 			{
-//				for(Search s: searches)
-//				{
-//					if(!s.contains(b.getBed(),b.getRoom()))//if bed with bed num and room not in search list
-//					{
-						if(isAvailable(b.getRoom(),b.getBed(),b.getDate()+i))
+				if(!isPresentInAnySearch(b.getBed(),b.getRoom())) 
+				{
+					Search s = new Search();
+					j=0;
+					for(int i=0; i<count; i++)//this loop trys to see i 
+					{
+						//				for(Search c: searches)
+						//				{
+						if(!s.contains(b.getBed(),b.getRoom()))//if bed with bed num and room not in search list
 						{
-							j++;
+							if(isAvailable(b.getRoom(),b.getBed(),b.getDate()+i))
+							{
+								j++;
+							}
 						}
-//					}
-//				}
+						//				}
+					}
+					if(count==j)
+					{
+						Bedroom b2;
+						while (j!=-1)
+						{
+							b2=getBedroom(b.getRoom(),b.getBed(),b.getDate()-j);
+							s.add(b2);
+							j--;
+						}
+						searches.add(s);
+					}
+				}
 			}
-			if(count==j)
+		}
+		printSearches(start,count);
+		
+	}
+	
+	public void printSearches(int date, int count)
+	{
+		System.out.println(getName()+" "+getCity());
+		if(searches.isEmpty())
+		{ 
+			System.out.println("No Sorry, not enough beds available on " +formatDate(date));
+		}
+		else
+		{
+			ArrayList<Bedroom> bList;
+			for (Search s:searches)
 			{
-				s.add(b);
-				j=0;
+				bList = s.getBeds();
+				System.out.print("search_id:"+s.getId()+", $"+s.getTotalCost()+", rooms ");
+				for(int i = 0; i < bList.size(); i+=count)
+				{
+					System.out.print("#"+bList.get(i).getRoom()+" ");	
+				}
+				System.out.println();
 			}
 		}
 	}
+	public boolean isPresentInAnySearch(int room, int bed)
+	{
+		for(Search s:searches)
+		{
+			if(s.contains(room,bed)){return true;}
+		}
+		return false;
+	}
 	
+	public Bedroom getBedroom(int room, int bed, int date)
+	{
+		for(Bedroom b:bedrooms)
+		{
+			if(b.getBed()==bed&&b.getDate()==date&&b.getRoom()==room){return b;}
+		}
+		return null;
+	}
 	
 	public int getDeadline() {
 		return deadline;

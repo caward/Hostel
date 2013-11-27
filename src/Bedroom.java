@@ -5,7 +5,16 @@ public class Bedroom {
 	private boolean available = true;
 	private int price = 0;
 	private int date=0;
+	private String hostelName="";
 	
+	public String getHostelName() {
+		return hostelName;
+	}
+
+	public void setHostelName(String hostelName) {
+		this.hostelName = hostelName;
+	}
+
 	public int getDate() {
 		return date;
 	}

@@ -1,9 +1,11 @@
 import java.util.ArrayList;
 
+
 public class HostelSystem 
 {
 	ArrayList<User> users=new ArrayList<User>();
 	ArrayList<Hostel> hostels;//initialized in xml
+	
 	
 	
 	public void search()
@@ -38,7 +40,18 @@ public class HostelSystem
 		}
 	}
 	
-	public void book(String searchId, String userId)
+	public void search(String city, int startDate, int endDate, int beds)
+	{
+		for(Hostel h:hostels)
+		{
+			if(h.getCity().equalsIgnoreCase(city))
+			{
+				h.realSearch(startDate, endDate,beds);
+			}
+		}	
+	}
+	
+	public void book(int searchId, int userId)
 	{
 		
 	}
