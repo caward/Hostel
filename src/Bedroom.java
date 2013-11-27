@@ -6,6 +6,7 @@ public class Bedroom {
 	private int price = 0;
 	private int date=0;
 	private String hostelName="";
+	private String city = "";
 	
 	public String getHostelName() {
 		return hostelName;
@@ -61,6 +62,16 @@ public class Bedroom {
 	public void setPrice(int price)
 	{
 		this.price = price;
+	}
+
+	public void setCity(String city)
+	{
+		this.city=city;	
+	}
+	
+	public String getCity()
+	{
+		return city;
 	}
 	
 	

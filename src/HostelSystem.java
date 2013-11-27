@@ -72,30 +72,39 @@ public class HostelSystem
 		Search realSearch=null;
 		if(isUser(userId))
 		{
-			for(Hostel h:hostels)
+			User user = getUser(userId);
+			if(user.isCreditCard())
 			{
-				ArrayList<Search> searches;
-				searches = h.getSearches();
-				for(Search s:searches)
+				for(Hostel h:hostels)
 				{
-					if(s.getId() == searchId)
+					ArrayList<Search> searches;
+					searches = h.getSearches();
+					for(Search s:searches)
 					{
-						realSearch = s;
+						if(s.getId() == searchId)
+						{
+							realSearch = s;
+						}
 					}
 				}
-			}
-			if(realSearch!=null)
-			{
-				Booking booking= new Booking();
-				booking.setBeds(realSearch.getBeds());
-				bookings.add(booking);
-				booking
+				if(realSearch!=null)
+				{
+					Booking booking= new Booking();
+					booking.setBeds(realSearch.getBeds());
+					booking.addUser(user);
+					booking.setCost(realSearch.getTotalCost());
+					bookings.add(booking);
+					booking.print();
+				}
+				else
+				{
+					System.out.println("No search found");
+				}
 			}
 			else
 			{
-				System.out.println("No search found");
+				System.out.println("Please enter credit card information");
 			}
-			
 		}
 		else
 		{
@@ -107,6 +116,18 @@ public class HostelSystem
 	public void addUser()
 	{
 		
+	}
+	
+	public User getUser(int userId)
+	{
+		for(User user:users)
+		{
+			if(user.getUserId()==userId)
+			{
+				return user;
+			}
+		}
+		return null;
 	}
 	
 	public void setHostels(ArrayList<Hostel> hostels)

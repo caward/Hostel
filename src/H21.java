@@ -38,7 +38,10 @@ public class H21 {
 			
 			if(tokens[1].equalsIgnoreCase("admin"))
 			{
-				
+				if(tokens[2].equalsIgnoreCase("--load"))
+				{
+					hostelSys.addHostel(parser.load(tokens[3]));
+				}
 			}
 			else if(tokens[1].equalsIgnoreCase("search"))
 			{

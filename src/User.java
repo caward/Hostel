@@ -78,5 +78,10 @@ public class User {
 		this.expirationDate = expirationDate;
 	}
 	
+	public boolean isCreditCard()
+	{
+		return creditCardNumber!=0; 
+	}
+	
 	
 }

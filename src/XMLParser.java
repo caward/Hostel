@@ -107,6 +107,7 @@ public class XMLParser {
 							System.out.println("price : " + bedroom.getPrice());
 						}
 						bedroom.setHostelName(hostel.getName());
+						bedroom.setCity(hostel.getCity());
 						hostel.addBedroom(bedroom);
 					}
 				}
