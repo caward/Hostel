@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class HostelSystem 
 {
 	ArrayList<User> users=new ArrayList<User>();
-	ArrayList<Hostel> hostels = new ArrayList<Hostel>();//initialized in xml
+	ArrayList<Hostel> hostels = new ArrayList<Hostel>();
 	ArrayList<Booking> bookings = new ArrayList<Booking>();
 	
 	
@@ -148,7 +148,8 @@ public class HostelSystem
 		return false;
 	}
 
-	public void cancel(int bookid) {
+	public void cancel(int bookid)
+	{
 		
 		
 	}
