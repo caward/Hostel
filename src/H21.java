@@ -95,8 +95,12 @@ public class H21 {
 					{
 						if(!hostelSys.isUser(tokens[8]))
 						{
-							User user1 = new User(tokens[4],tokens[6],tokens[8]);
+							hostelSys.addUser(tokens[4],tokens[6],tokens[8]);
 						}
+					}
+					else if()
+					{
+						
 					}
 				}
 			}

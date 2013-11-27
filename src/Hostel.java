@@ -119,7 +119,6 @@ public class Hostel {
 		}
 		return null;
 	}
-	
 	public int getDeadline() {
 		return deadline;
 	}
@@ -129,12 +128,10 @@ public class Hostel {
 	public String getPenalty() {
 		return penalty;
 	}
-	public void setPenalty(String penalty) {
+	public void setPenalty(String penalty)
+	{
 		this.penalty = penalty;
 	}
-
-	
-	
 	public void setName(String name)
 	{
 		hostelName=name;

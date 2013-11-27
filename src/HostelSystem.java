@@ -113,9 +113,10 @@ public class HostelSystem
 	}
 	
 	
-	public void addUser()
+	public void addUser(String fname, String lname, String email)
 	{
-		
+		User user = new User(fname,lname,email);
+		users.add(user);
 	}
 	
 	public User getUser(int userId)
@@ -150,8 +151,7 @@ public class HostelSystem
 
 	public void cancel(int bookid)
 	{
-		
-		
+				
 	}
 
 
