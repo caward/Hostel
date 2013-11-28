@@ -11,10 +11,11 @@ public class User {
 	private String phone="";
 	private long creditCardNumber=0;
 	private int securityCode=0;
-	private String expirationDate="";
+	private int expirationDate=0;
 	private String created="";
 	
-	public User(String fname, String lname, String email){
+	public User(String fname, String lname, String email)
+	{
 		this.fname = fname;
 		this.lname = lname;
 		this.email = email;
@@ -71,10 +72,10 @@ public class User {
 	public void setSecurityCode(int securityCode) {
 		this.securityCode = securityCode;
 	}
-	public String getExpirationDate() {
+	public int getExpirationDate() {
 		return expirationDate;
 	}
-	public void setExpirationDate(String expirationDate) {
+	public void setExpirationDate(int expirationDate) {
 		this.expirationDate = expirationDate;
 	}
 	

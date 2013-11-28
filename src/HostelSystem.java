@@ -6,11 +6,16 @@ public class HostelSystem
 	ArrayList<User> users=new ArrayList<User>();
 	ArrayList<Hostel> hostels = new ArrayList<Hostel>();
 	ArrayList<Booking> bookings = new ArrayList<Booking>();
+	private int revenue=0;
 	
 	
 	public void addHostel(Hostel h)
 	{
 		hostels.add(h);
+	}
+	public int getRevenue()
+	{
+		return revenue;
 	}
 	
 	public ArrayList<Hostel> getHostels() {
@@ -93,6 +98,7 @@ public class HostelSystem
 					booking.setBeds(realSearch.getBeds());
 					booking.addUser(user);
 					booking.setCost(realSearch.getTotalCost());
+					revenue+=realSearch.getTotalCost();
 					bookings.add(booking);
 					booking.print();
 				}
@@ -117,6 +123,18 @@ public class HostelSystem
 	{
 		User user = new User(fname,lname,email);
 		users.add(user);
+		user.toString();
+	}
+	
+	public void addUser(String fname, String lname, String email,long credit,int date, int code,String phone)
+	{
+		User user = new User(fname,lname,email);
+		user.setCreditCardNumber(credit);
+		user.setExpirationDate(date);
+		user.setSecurityCode(code);
+		user.setPhone(phone);
+		users.add(user);
+		user.toString();
 	}
 	
 	public User getUser(int userId)
@@ -152,6 +170,60 @@ public class HostelSystem
 	public void cancel(int bookid)
 	{
 				
+	}
+	public void changeUser(int userId, String fname, String lname,
+			String email)
+	{
+		for(User user:users)
+		{
+			if(user.getUserId()==userId)
+			{
+				user.setFname(fname);
+				user.setLname(lname);
+				user.setEmail(email);
+			}	
+		}
+	}
+	
+	public void changeUser(int userId, String fname, String lname,
+			String email, long credit,int date, int code, String phone)
+	{
+		for(User user:users)
+		{
+			if(user.getUserId()==userId)
+			{
+				user.setFname(fname);
+				user.setLname(lname);
+				user.setEmail(email);
+				user.setCreditCardNumber(credit);
+				user.setExpirationDate(date);
+				user.setSecurityCode(code);
+				user.setPhone(phone);
+			}	
+		}
+	}
+	public void changeUser(int userId,long credit,int date, int code, String phone)
+	{
+		for(User user:users)
+		{
+			if(user.getUserId()==userId)
+			{
+				user.setCreditCardNumber(credit);
+				user.setExpirationDate(date);
+				user.setSecurityCode(code);
+				user.setPhone(phone);
+			}	
+		}
+	}
+	public void viewUser(int userId)
+	{
+		for(User user:users)
+		{
+			if(user.getUserId()==userId)
+			{
+				user.toString();
+			}	
+		}
 	}
 
 

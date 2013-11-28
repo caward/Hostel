@@ -10,7 +10,7 @@ public class XMLParser {
 	static ArrayList<Hostel> hostels= new ArrayList<Hostel>();
 	Hostel hostel;
 	//public void parser()
-	public Hostel load(String path)
+	public void load(String path, HostelSystem hostelSys)
 	{
 		try
 		{
@@ -28,6 +28,7 @@ public class XMLParser {
 
 			for (int i = 0; i < list.getLength(); i++)
 			{
+//				int i =0;
 				Hostel hostel = new Hostel();
 				Node node = list.item(i);
 
@@ -109,6 +110,7 @@ public class XMLParser {
 						bedroom.setHostelName(hostel.getName());
 						bedroom.setCity(hostel.getCity());
 						hostel.addBedroom(bedroom);
+						hostelSys.addHostel(hostel);
 					}
 				}
 			}
@@ -116,7 +118,7 @@ public class XMLParser {
 	    {
 	    	e.printStackTrace();
 	    }
-		return hostel;
+//		return hostel;
 	    
 	}
 	private static String tagInfo(Element element, String info, int index)

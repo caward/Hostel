@@ -47,8 +47,7 @@ public class Booking
 		System.out.println("Beds: "+numBeds);
 		System.out.println("Booking ID: "+ bkId);
 		System.out.println("Name: "+user.getFname()+" "+user.getLname());
-		System.out.println("Price: $"+price);
-		
+		System.out.println("Price: $"+price);		
 	}
 	private String formatDate(int i)
 	{

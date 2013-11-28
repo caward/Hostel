@@ -311,6 +311,7 @@ public class Hostel {
 	         }
 	     }
 		System.out.println(formatDate(date)+" to "+formatDate(date+1)+": "+count+" beds between $"+min+" and $"+max);
+		System.out.println();
 	}
 	
 	public void availableSearch(int startDate, int endDate)

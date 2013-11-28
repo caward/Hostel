@@ -10,14 +10,10 @@ public class H21 {
 	{
 		HostelSystem hostelSys = new HostelSystem();
 		XMLParser parser = new XMLParser();
-		// TODO Auto-generated method stub
 		String line = "";
 		Scanner stdin = new Scanner(System.in);
-//		while 
-		System.out.println("Please enter file path for hotels ");
-		line=stdin.nextLine();
 		String delims = "[ ]+";
-		String[] tokens = line.split(delims);
+		String[] tokens;
 		while(hostelSys.getHostels().isEmpty())
 		{
 			System.out.println("No hostels Loaded. ENTER:");
@@ -26,92 +22,139 @@ public class H21 {
 			tokens = line.split(delims);
 			if(tokens[0].equalsIgnoreCase("h21"))
 			{
-				
 				if(tokens[1].equalsIgnoreCase("admin"))
 				{
-					hostelSys.addHostel(parser.load(tokens[3]));				
+					parser.load(tokens[3],hostelSys);				
 				}
 			}
 		}
-		if(tokens[0].equalsIgnoreCase("h21"))
+		while(true)
 		{
-			
-			if(tokens[1].equalsIgnoreCase("admin"))
+			System.out.println("Enter a command");
+			line=stdin.nextLine();
+			tokens = line.split(delims);
+			if(tokens[0].equalsIgnoreCase("h21"))
 			{
-				if(tokens[2].equalsIgnoreCase("--load"))
+				if(tokens[1].equalsIgnoreCase("admin"))
 				{
-					hostelSys.addHostel(parser.load(tokens[3]));
+					if(tokens[2].equalsIgnoreCase("--load"))
+					{
+						parser.load(tokens[3], hostelSys);
+					}
 				}
-			}
-			else if(tokens[1].equalsIgnoreCase("search"))
-			{
-				if(tokens.length==2)
+				else if(tokens[1].equalsIgnoreCase("search"))
 				{
-					hostelSys.search();
+					if(tokens.length==2)
+					{
+						hostelSys.search();
+					}
+					else if(tokens.length==4)
+					{
+						hostelSys.search(tokens[3]);
+					}
+					else if(tokens.length==8)
+					{
+						hostelSys.search(tokens[3],Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
+					}
+					else if(tokens.length==10)
+					{
+						hostelSys.search(tokens[3],Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]),Integer.parseInt(tokens[9]));
+					}
+
+
 				}
-				else if(tokens.length==4)
+				else if(tokens[1].equalsIgnoreCase("book"))
 				{
-					hostelSys.search(tokens[3]);
+					if(tokens.length==7)
+					{
+						if(tokens[2].equalsIgnoreCase("add"))
+						{
+							hostelSys.book(Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
+						}
+						else if(tokens[2].equalsIgnoreCase("cancel"))
+						{
+							hostelSys.cancel(Integer.parseInt(tokens[4]));
+						}
+						else if(tokens[2].equalsIgnoreCase("view"))
+						{
+							//hostelSys.view(Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
+						}
+
+					}
+					else
+					{
+						System.out.println("Invalid command. Please try again");
+					}
 				}
-				else if(tokens.length==8)
-				{
-					hostelSys.search(tokens[3],Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
-				}
-				else if(tokens.length==10)
-				{
-					hostelSys.search(tokens[3],Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]),Integer.parseInt(tokens[9]));
-				}
-			
-			
-			}
-			else if(tokens[1].equalsIgnoreCase("book"))
-			{
-				if(tokens.length==7)
+				else if(tokens[1].equalsIgnoreCase("user"))
 				{
 					if(tokens[2].equalsIgnoreCase("add"))
 					{
-						hostelSys.book(Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
+						if (tokens.length==9)
+						{
+							if(!hostelSys.isUser(tokens[8]))
+							{
+								hostelSys.addUser(tokens[4],tokens[6],tokens[8]);
+							}
+						}
+						else if(tokens.length==17)
+						{
+							if(!hostelSys.isUser(tokens[8]))
+							{
+								hostelSys.addUser(tokens[4],tokens[6],tokens[8],Long.parseLong(tokens[10]),Integer.parseInt(tokens[12]),Integer.parseInt(tokens[14]),tokens[16]);
+							}
+						}
+						else
+						{
+							System.out.println("Wrong  number of inputs");
+							System.out.println("h21 user add --first_name --last_name --email [ --cc_number --expiration_date --security_code --phone ]");
+						}
 					}
-					else if(tokens[2].equalsIgnoreCase("cancel"))
+					else if(tokens[2].equalsIgnoreCase("change"))
 					{
-						hostelSys.cancel(Integer.parseInt(tokens[4]));
+						if(hostelSys.isUser(Integer.parseInt(tokens[4])))
+						{
+							//if changing name and email
+							if(tokens.length==11)
+							{
+								hostelSys.changeUser(Integer.parseInt(tokens[4]),tokens[6],tokens[8],tokens[10]);							
+							}
+							//if changing Credit Card info
+							else if(tokens.length==13)
+							{
+								hostelSys.changeUser(Integer.parseInt(tokens[4]),Long.parseLong(tokens[6]),Integer.parseInt(tokens[8]),Integer.parseInt(tokens[10]),tokens[12]);
+							}
+							//if changing name, email, and credit card info
+							else if (tokens.length==19)
+							{
+								hostelSys.changeUser(Integer.parseInt(tokens[4]),tokens[6],tokens[8],tokens[10],Long.parseLong(tokens[6]),Integer.parseInt(tokens[8]),Integer.parseInt(tokens[10]),tokens[12]);
+							}
+						}
+						else
+						{
+							System.out.println("Not a user. Please add user.");
+						}
 					}
 					else if(tokens[2].equalsIgnoreCase("view"))
 					{
-						hostelSys.view(Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
-					}
-					
-				}
-				else
-				{
-					System.out.println("Invalid command. Please try again");
-				}
-			}
-			else if(tokens[1].equalsIgnoreCase("user"))
-			{
-				if(tokens[2].equalsIgnoreCase("add"))
-				{
-					if (tokens.length==9)
-					{
-						if(!hostelSys.isUser(tokens[8]))
+						if(tokens.length==5)
 						{
-							hostelSys.addUser(tokens[4],tokens[6],tokens[8]);
+							if(hostelSys.isUser(Integer.parseInt(tokens[4])))
+							{
+								hostelSys.viewUser(Integer.parseInt(tokens[4]));
+							}
+							else
+							{
+								System.out.println("Not a user. Please add user.");
+							}
 						}
 					}
-					else if()
-					{
-						
-					}
 				}
 			}
-			else if(tokens[1].equalsIgnoreCase("admin"))
+			else
 			{
-				
+				System.out.println("Did not start Command with h21. Please try again");
 			}
-		}
-		else
-		{
-			System.out.println("Did not start Command with h21. Please try again");
 		}
 	}
 
