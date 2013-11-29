@@ -102,7 +102,7 @@ public class H21 {
 						}
 						else if(tokens[2].equalsIgnoreCase("view"))
 						{
-							//hostelSys.view(Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
+							//hostelSys.viewBooking(Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
 						}
 
 					}

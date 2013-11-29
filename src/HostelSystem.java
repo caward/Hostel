@@ -183,6 +183,19 @@ public class HostelSystem
 	{
 		
 	}
+	
+	public void viewBooking(int bookid)
+	{
+		for(Booking book:bookings)
+		{
+			if(book.getBookingId()==bookid)
+			{
+				book.print();
+				System.out.println();
+			}
+		}
+	}
+	
 	public void changeUser(int userId, String fname, String lname,
 			String email)
 	{
