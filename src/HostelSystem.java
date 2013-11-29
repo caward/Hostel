@@ -39,6 +39,7 @@ public class HostelSystem
 	
 	public void search(String city)
 	{
+		city = city.substring(1,city.length()-1);
 		for(Hostel h:hostels)
 		{
 			if(h.getCity().equalsIgnoreCase(city))
@@ -51,6 +52,7 @@ public class HostelSystem
 	
 	public void search(String city, int startDate, int endDate)
 	{
+		city = city.substring(1,city.length()-1);
 		for(Hostel h:hostels)
 		{
 			if(h.getCity().equalsIgnoreCase(city))
@@ -63,6 +65,7 @@ public class HostelSystem
 	
 	public void search(String city, int startDate, int endDate, int beds)
 	{
+		city = city.substring(1,city.length()-1);
 		for(Hostel h:hostels)
 		{
 			if(h.getCity().equalsIgnoreCase(city))

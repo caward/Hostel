@@ -1,5 +1,7 @@
 import java.util.Scanner;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.ArrayList;
 
 public class H21 {
 
@@ -9,17 +11,27 @@ public class H21 {
 	public static void main(String[] args)
 	{
 		HostelSystem hostelSys = new HostelSystem();
+		ArrayList<String> token = new ArrayList<String>();
 		XMLParser parser = new XMLParser();
 		String line = "";
+		String regex= "\"([^\"]*)\"|(\\S+)";
 		Scanner stdin = new Scanner(System.in);
-		String delims = "[ ]+";
+//		String delims = "[ ]+";
+		Matcher m;
 		String[] tokens;
 		while(hostelSys.getHostels().isEmpty())
 		{
 			System.out.println("No hostels Loaded. ENTER:");
 			System.out.println("h21 admin --load FILEPATH");
 			line=stdin.nextLine();
-			tokens = line.split(delims);
+//			tokens = line.split(delims);
+			m = Pattern.compile(regex).matcher(line);
+//			tokens = new String[m.groupCount()+2];
+			while(m.find())
+			{
+				token.add(m.group(0));
+			}
+			tokens=token.toArray(new String[token.size()]);
 			if(tokens[0].equalsIgnoreCase("h21"))
 			{
 				if(tokens[1].equalsIgnoreCase("admin"))
@@ -30,9 +42,17 @@ public class H21 {
 		}
 		while(true)
 		{
+			token.clear();
 			System.out.println("Enter a command");
 			line=stdin.nextLine();
-			tokens = line.split(delims);
+//			tokens = line.split(delims);
+			m = Pattern.compile(regex).matcher(line);
+//			tokens = new String[m.groupCount()];
+			while(m.find())
+			{
+				token.add(m.group(0));
+			}
+			tokens=token.toArray(new String[token.size()]);
 			if(tokens[0].equalsIgnoreCase("h21"))
 			{
 				if(tokens[1].equalsIgnoreCase("admin"))

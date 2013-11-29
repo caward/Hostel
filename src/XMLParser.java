@@ -109,9 +109,9 @@ public class XMLParser {
 						}
 						bedroom.setHostelName(hostel.getName());
 						bedroom.setCity(hostel.getCity());
-						hostel.addBedroom(bedroom);
-						hostelSys.addHostel(hostel);
+						hostel.addBedroom(bedroom);						
 					}
+					hostelSys.addHostel(hostel);
 				}
 			}
 		} catch (Exception e)
@@ -119,6 +119,7 @@ public class XMLParser {
 	    	e.printStackTrace();
 	    }
 //		return hostel;
+//		hostelSys.addHostel(hostel);
 	    
 	}
 	private static String tagInfo(Element element, String info, int index)

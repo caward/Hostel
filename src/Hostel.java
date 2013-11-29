@@ -40,13 +40,14 @@ public class Hostel {
 		
 		int count = end-start;
 		int j=0;//counts to see if room is available all count days
-		ListIterator<Bedroom> litr = bedrooms.listIterator();
-		while(litr.hasNext())
-		{
+//		ListIterator<Bedroom> litr = bedrooms.listIterator();
+//		while(litr.hasNext())
+//		{
 			for(Bedroom b:bedrooms)
-			{
-				if(!isPresentInAnySearch(b.getBed(),b.getRoom())) 
-				{
+			{	//if (b!=null)
+				//{
+//				if(!isPresentInAnySearch(b.getBed(),b.getRoom())) 
+//				{
 					Search s = new Search();
 					j=0;
 					for(int i=0; i<count; i++)//this loop trys to see i 
@@ -73,9 +74,10 @@ public class Hostel {
 						}
 						searches.add(s);
 					}
-				}
+//				}
+//				}
 			}
-		}
+//		}
 		printSearches(start,count);
 		
 	}
@@ -92,13 +94,17 @@ public class Hostel {
 			ArrayList<Bedroom> bList;
 			for (Search s:searches)
 			{
-				bList = s.getBeds();
-				System.out.print("search_id:"+s.getId()+", $"+s.getTotalCost()+", rooms ");
-				for(int i = 0; i < bList.size(); i+=count)
+				if(s!=null)
 				{
-					System.out.print("#"+bList.get(i).getRoom()+" ");	
+					bList = s.getBeds();
+					System.out.print("search_id:"+s.getId()+", $"+s.getTotalCost()+", rooms ");
+					for(int i = 0; i < bList.size(); i++)
+					{
+//						if()
+						System.out.print("#"+bList.get(i).getRoom()+" ");	
+					}
+					System.out.println();
 				}
-				System.out.println();
 			}
 		}
 	}

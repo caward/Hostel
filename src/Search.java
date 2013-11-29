@@ -23,7 +23,10 @@ public class Search {
 		int cost = 0;
 		for(Bedroom b : beds)
 		{
-			cost+=b.getPrice();
+			if(b!=null)
+			{
+				cost+=b.getPrice();
+			}
 		}
 		return cost;
 	}
