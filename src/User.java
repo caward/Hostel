@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class User {
 //	private static int totalUsers=0;
-	private static int userId = 0;
+	private static int userId = 1;
 	private String fname="";
 	private String lname="";
 	private String email="";
@@ -29,7 +29,7 @@ public class User {
 	
 	public void userInfo() 
 	{
-		System.out.println("user_id: " +userId+"/n Name: "+fname+" "+lname+"/n Email: "+email+"/n Date Created: "+created);	
+		System.out.println("user_id: " +user_id+"\n Name: "+fname+" "+lname+"\n Email: "+email+"\n Date Created: "+created);	
 	}
 	
 	public int getUserId()

@@ -62,6 +62,10 @@ public class H21 {
 					{
 						parser.load(tokens[3], hostelSys);
 					}
+					else if(tokens[2].equalsIgnoreCase("--revenue"))
+					{
+						
+					}
 				}
 				else if(tokens[1].equalsIgnoreCase("search"))
 				{
@@ -90,7 +94,7 @@ public class H21 {
 					{
 						if(tokens[2].equalsIgnoreCase("add"))
 						{
-							hostelSys.book(Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
+							hostelSys.book(Integer.parseInt(tokens[4]),Integer.parseInt(tokens[6]));
 						}
 						else if(tokens[2].equalsIgnoreCase("cancel"))
 						{
@@ -148,7 +152,7 @@ public class H21 {
 							//if changing name, email, and credit card info
 							else if (tokens.length==19)
 							{
-								hostelSys.changeUser(Integer.parseInt(tokens[4]),tokens[6],tokens[8],tokens[10],Long.parseLong(tokens[6]),Integer.parseInt(tokens[8]),Integer.parseInt(tokens[10]),tokens[12]);
+								hostelSys.changeUser(Integer.parseInt(tokens[4]),tokens[6],tokens[8],tokens[10],Long.parseLong(tokens[12]),Integer.parseInt(tokens[14]),Integer.parseInt(tokens[16]),tokens[18]);
 							}
 						}
 						else

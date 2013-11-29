@@ -46,7 +46,7 @@ public class Booking
 		System.out.println("Check-out date: "+formatDate(beds.get(beds.size()-1).getDate()+1));
 		int numBeds = beds.size()/(beds.get(beds.size()-1).getDate()+1-beds.get(0).getDate());
 		System.out.println("Beds: "+numBeds);
-		System.out.println("Booking ID: "+ bkId);
+		System.out.println("Booking ID: "+ bk_id);
 		System.out.println("Name: "+user.getFname()+" "+user.getLname());
 		System.out.println("Price: $"+price);		
 	}

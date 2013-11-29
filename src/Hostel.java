@@ -21,6 +21,11 @@ public class Hostel {
 	ArrayList<Bedroom> bedrooms=new ArrayList<Bedroom>();
 	ArrayList<Search> searches = new ArrayList<Search>();
 	
+	public void clearSearches()
+	{
+		searches.clear();
+	}
+	
 	public ArrayList<Search> getSearches()
 	{
 		return searches;
@@ -76,7 +81,8 @@ public class Hostel {
 	{
 		searches.clear();
 		int count = end-start;
-		for(Bedroom b:bedrooms)
+		for(int j=0;j<bedrooms.size();j++)
+//		for(Bedroom b:bedrooms)
 		{
 			Search s = new Search();
 			for(int i = 0; i<numbed;i++)

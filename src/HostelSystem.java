@@ -8,6 +8,13 @@ public class HostelSystem
 	ArrayList<Booking> bookings = new ArrayList<Booking>();
 	private int revenue=0;
 	
+	public void clearAllSearches()
+	{
+		for(Hostel h:hostels)
+		{
+			h.clearSearches();
+		}
+	}
 	
 	public void addHostel(Hostel h)
 	{
@@ -104,6 +111,7 @@ public class HostelSystem
 					revenue+=realSearch.getTotalCost();
 					bookings.add(booking);
 					booking.print();
+					clearAllSearches();
 				}
 				else
 				{
@@ -119,6 +127,7 @@ public class HostelSystem
 		{
 			System.out.println("No user found");
 		}
+		
 	}
 	
 	
@@ -172,7 +181,7 @@ public class HostelSystem
 
 	public void cancel(int bookid)
 	{
-				
+		
 	}
 	public void changeUser(int userId, String fname, String lname,
 			String email)
