@@ -3,10 +3,10 @@ import java.util.ArrayList;
 public class Search {
 	static int searchId = 1;
 	ArrayList<Bedroom> beds = new ArrayList<Bedroom>();
-	
+	int search_id;
 	public Search()
 	{
-		searchId++;
+		search_id = searchId++;
 	}
 	public boolean contains(int bed, int room)
 	{
@@ -37,7 +37,7 @@ public class Search {
 	
 	public int getId()
 	{
-		return searchId;
+		return search_id;
 	}
 	
 	public ArrayList<Bedroom> getBeds()

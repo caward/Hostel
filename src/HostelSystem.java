@@ -70,7 +70,7 @@ public class HostelSystem
 		{
 			if(h.getCity().equalsIgnoreCase(city))
 			{
-				h.realSearch(startDate, endDate,beds);
+				h.realSearch2(startDate, endDate,beds);
 			}
 		}	
 	}

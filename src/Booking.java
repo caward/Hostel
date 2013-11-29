@@ -6,10 +6,11 @@ public class Booking
 	User user;
 	private static int bkId=0;
 	private int price = 0;
+	private int bk_id;
 	
 	public Booking()
 	{
-		bkId +=1;
+		bk_id=bkId ++;
 	}
 
 	public ArrayList<Bedroom> getBeds() {
@@ -25,7 +26,7 @@ public class Booking
 	}
 	public int getBookingId()
 	{
-		return bkId;
+		return bk_id;
 	}
 	
 	public void setCost(int cost)
@@ -49,7 +50,7 @@ public class Booking
 		System.out.println("Name: "+user.getFname()+" "+user.getLname());
 		System.out.println("Price: $"+price);		
 	}
-	private String formatDate(int i)
+	public String formatDate(int i)
 	{
 		String date = String.valueOf(i);
 		date= date.substring(4,6)+"/"+date.substring(6)+"/"+date.substring(0, 4);

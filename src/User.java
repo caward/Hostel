@@ -13,13 +13,14 @@ public class User {
 	private int securityCode=0;
 	private int expirationDate=0;
 	private String created="";
+	private int user_id;
 	
 	public User(String fname, String lname, String email)
 	{
 		this.fname = fname;
 		this.lname = lname;
 		this.email = email;
-		userId+=1;
+		user_id=userId++;
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
 		created = dateFormat.format(cal.getTime());
@@ -33,7 +34,7 @@ public class User {
 	
 	public int getUserId()
 	{
-		return userId;
+		return user_id;
 	}
 
 	public String getFname() {

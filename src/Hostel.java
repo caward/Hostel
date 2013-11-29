@@ -35,7 +35,64 @@ public class Hostel {
 		return false;
 	}
 	
-	public void realSearch(int start, int end, int numbed)
+	public void addToSearch(int days,int end,Search s)
+	{
+		int j=0;
+		int done = 0;
+		Bedroom b2;
+		for(Bedroom b:bedrooms)
+		{
+			if(!isPresentInAnySearch(b.getRoom(),b.getBed()))
+			{
+				if(!s.contains(b.getBed(), b.getRoom()))//check if bedroom is in search			
+				{
+					for(int i =0; i<days; i++)//checks to see if room is available for duration of stay
+					{
+
+						b2=getBedroom(b.getRoom(),b.getBed(), b.getDate()+i);
+						if(b2!=null&&b2.getDate()<end)
+						{
+							if(b2.isAvailable()){j++;}
+						}
+					}
+
+				}
+				if(j==days&&done==0)//if available for duration add to search
+				{
+					Bedroom b1;
+					while(j!=0)
+					{
+						b1=getBedroom(b.getRoom(),b.getBed(), b.getDate()+j-1);
+						s.add(b1);
+						j--;
+					}
+					done=1;
+				}
+			}
+		}
+	}
+	
+	public void realSearch2(int start, int end, int numbed)
+	{
+		searches.clear();
+		int count = end-start;
+		for(Bedroom b:bedrooms)
+		{
+			Search s = new Search();
+			for(int i = 0; i<numbed;i++)
+			{
+
+				addToSearch(count,end,s);
+			}
+			if(s.getBeds().size()==(numbed*count))
+			{
+				searches.add(s);
+			}
+		}
+		printSearches(start,count);
+	}
+	
+ 	public void realSearch(int start, int end, int numbed)
 	{
 		
 		int count = end-start;
@@ -112,7 +169,7 @@ public class Hostel {
 	{
 		for(Search s:searches)
 		{
-			if(s.contains(room,bed)){return true;}
+			if(s.contains(bed,room)){return true;}
 		}
 		return false;
 	}

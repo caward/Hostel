@@ -21,6 +21,7 @@ public class H21 {
 		String[] tokens;
 		while(hostelSys.getHostels().isEmpty())
 		{
+			token.clear();
 			System.out.println("No hostels Loaded. ENTER:");
 			System.out.println("h21 admin --load FILEPATH");
 			line=stdin.nextLine();
