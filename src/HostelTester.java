@@ -19,8 +19,7 @@ public class HostelTester
 		bed.setAvailable(true);
 		bed.setDate(date);
 		hostel.setName("IIT MSV");
-		hostel.setCity("Chicago");
-		
+		hostel.setCity("Chicago");		
 		
 	}
 	

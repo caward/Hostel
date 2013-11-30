@@ -98,53 +98,6 @@ public class Hostel {
 		printSearches(start,count);
 	}
 	
- 	public void realSearch(int start, int end, int numbed)
-	{
-		
-		int count = end-start;
-		int j=0;//counts to see if room is available all count days
-//		ListIterator<Bedroom> litr = bedrooms.listIterator();
-//		while(litr.hasNext())
-//		{
-			for(Bedroom b:bedrooms)
-			{	//if (b!=null)
-				//{
-//				if(!isPresentInAnySearch(b.getBed(),b.getRoom())) 
-//				{
-					Search s = new Search();
-					j=0;
-					for(int i=0; i<count; i++)//this loop trys to see i 
-					{
-						//				for(Search c: searches)
-						//				{
-						if(!s.contains(b.getBed(),b.getRoom()))//if bed with bed num and room not in search list
-						{
-							if(isAvailable(b.getRoom(),b.getBed(),b.getDate()+i))
-							{
-								j++;
-							}
-						}
-						//				}
-					}
-					if(count==j)
-					{
-						Bedroom b2;
-						while (j!=-1)
-						{
-							b2=getBedroom(b.getRoom(),b.getBed(),b.getDate()-j);
-							s.add(b2);
-							j--;
-						}
-						searches.add(s);
-					}
-//				}
-//				}
-			}
-//		}
-		printSearches(start,count);
-		
-	}
-	
 	public void printSearches(int date, int count)
 	{
 		System.out.println(getName()+" "+getCity());
@@ -318,32 +271,6 @@ public class Hostel {
 	{
 		bedrooms.add(bedroom);
 	}
-	
-//	public void sortBedrooms()
-//	{
-//		Bedroom[] beds = bedrooms.toArray(new Bedroom[bedrooms.size()]);
-//		beds=insertionSort(beds);
-//		bedrooms.clear();
-//		bedrooms.addAll(Arrays.asList(beds));
-//	}
-//	
-//	private Bedroom[] insertionSort(Bedroom[] bed)
-//	{
-//		int j;
-//		Bedroom b;
-//		for (int i = 1; i < bed.length; i++)
-//		{
-//			j = i;
-//			b = bed[i];
-//			while ((j > 0) && (bed[j-1].getDate() > b.getDate()))
-//			{
-//				bed[j] = bed[j-1];
-//				j--;
-//			}
-//			  bed[j] = b;
-//		}
-//		return bed;
-//	}
 	
 	public void generalsearch()
 	{

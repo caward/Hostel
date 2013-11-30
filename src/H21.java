@@ -16,7 +16,6 @@ public class H21 {
 		String line = "";
 		String regex= "\"([^\"]*)\"|(\\S+)";
 		Scanner stdin = new Scanner(System.in);
-//		String delims = "[ ]+";
 		Matcher m;
 		String[] tokens;
 		while(hostelSys.getHostels().isEmpty())
@@ -25,9 +24,7 @@ public class H21 {
 			System.out.println("No hostels Loaded. ENTER:");
 			System.out.println("h21 admin --load FILEPATH");
 			line=stdin.nextLine();
-//			tokens = line.split(delims);
 			m = Pattern.compile(regex).matcher(line);
-//			tokens = new String[m.groupCount()+2];
 			while(m.find())
 			{
 				token.add(m.group(0));
@@ -46,9 +43,7 @@ public class H21 {
 			token.clear();
 			System.out.println("Enter a command");
 			line=stdin.nextLine();
-//			tokens = line.split(delims);
 			m = Pattern.compile(regex).matcher(line);
-//			tokens = new String[m.groupCount()];
 			while(m.find())
 			{
 				token.add(m.group(0));
@@ -62,9 +57,13 @@ public class H21 {
 					{
 						parser.load(tokens[3], hostelSys);
 					}
-					else if(tokens[2].equalsIgnoreCase("--revenue"))
+					else if(tokens[2].equalsIgnoreCase("revenue"))
 					{
-						
+						System.out.println("Revenue: "+hostelSys.getRevenue());
+					}
+					else if(tokens[2].equalsIgnoreCase("Occupancy"))
+					{
+						System.out.println("Occupancy: "+hostelSys.getRevenue());
 					}
 				}
 				else if(tokens[1].equalsIgnoreCase("search"))
@@ -96,15 +95,17 @@ public class H21 {
 						{
 							hostelSys.book(Integer.parseInt(tokens[4]),Integer.parseInt(tokens[6]));
 						}
-						else if(tokens[2].equalsIgnoreCase("cancel"))
+					}
+					if(tokens.length==5)
+					{
+						if(tokens[2].equalsIgnoreCase("cancel"))
 						{
 							hostelSys.cancel(Integer.parseInt(tokens[4]));
 						}
-						else if(tokens[2].equalsIgnoreCase("view"))
+						if(tokens[2].equalsIgnoreCase("view"))
 						{
-							//hostelSys.viewBooking(Integer.parseInt(tokens[5]),Integer.parseInt(tokens[7]));
+							hostelSys.viewBooking(Integer.parseInt(tokens[4]));
 						}
-
 					}
 					else
 					{
@@ -182,5 +183,4 @@ public class H21 {
 			}
 		}
 	}
-
 }

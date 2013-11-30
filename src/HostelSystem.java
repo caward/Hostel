@@ -1,12 +1,13 @@
 import java.util.ArrayList;
-
+import java.util.Date;
+import java.util.Calendar;
 
 public class HostelSystem 
 {
 	ArrayList<User> users=new ArrayList<User>();
 	ArrayList<Hostel> hostels = new ArrayList<Hostel>();
 	ArrayList<Booking> bookings = new ArrayList<Booking>();
-	private int revenue=0;
+	private double revenue=0;
 	
 	public void clearAllSearches()
 	{
@@ -20,12 +21,24 @@ public class HostelSystem
 	{
 		hostels.add(h);
 	}
-	public int getRevenue()
+	public double getRevenue()
 	{
 		return revenue;
 	}
 	
-	public ArrayList<Hostel> getHostels() {
+	public Hostel getHostel(String name)
+	{
+		for(Hostel h : hostels)
+		{
+			if(h.getName().equalsIgnoreCase(name))
+			{
+				return h;
+			}
+		}
+		return null;
+	}
+	
+ 	public ArrayList<Hostel> getHostels() {
 		return hostels;
 	}
 	public boolean isUser(int id)
@@ -178,9 +191,66 @@ public class HostelSystem
 		}
 		return false;
 	}
-
+	
+	private int daysBetween(Date d1, Date d2)
+	{
+        return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+    }
+	
+	public void cancellation(String hostelName, int date1,int price)
+	{	
+		int numdays;
+		int penalty=0;
+		double percentageWithdrawn;
+		Hostel h;
+		h=getHostel(hostelName);
+		String date = String.valueOf(date1);
+		
+		Calendar cal = Calendar.getInstance();
+		Calendar cal1 = Calendar.getInstance();
+		cal1.set(Integer.parseInt(date.substring(0, 4)), Integer.parseInt(date.substring(4,6)), Integer.parseInt(date.substring(6)));
+		numdays = daysBetween(cal.getTime(),cal.getTime());
+		int hotelDays = h.getDeadline()/12;
+		if(hotelDays<=numdays)
+		{
+			penalty = Integer.parseInt(h.getPenalty().substring(0, h.getPenalty().length()-1));
+			percentageWithdrawn = (100-penalty)/100;
+			revenue -= (percentageWithdrawn*price);
+		}
+		else
+		{
+			revenue-=price;
+		}
+	}
+	
 	public void cancel(int bookid)
 	{
+		String hotelName=null;
+		ArrayList<Bedroom> beds = null;
+		int price=0;
+		int found = 0;
+		for(Booking b:bookings)
+		{
+			if(b.getBookingId()==bookid)
+			{
+				price = b.getCost(); 
+				beds = b.getBeds();
+				for(Bedroom bed: beds)
+				{
+					bed.setAvailable(true);
+					hotelName=bed.getHostelName();
+				}
+				b.setStatus("Cancelled");
+				found=1;
+			}
+		}if(found==1)
+		{
+			cancellation(hotelName, beds.get(0).getDate(),price);
+		}
+		if(found==0)
+		{
+			System.out.println("Booking id: "+bookid+" not found.");
+		}
 		
 	}
 	
@@ -196,6 +266,19 @@ public class HostelSystem
 		}
 	}
 	
+	public int getBedNum()
+	{
+		int occupancy = 0;
+		for(Booking b:bookings)
+		{
+			if(b.getStatus().equalsIgnoreCase("Ordered"))
+			{
+				occupancy+=b.getBedNum();
+			}
+		}
+		return occupancy;
+	}
+	
 	public void changeUser(int userId, String fname, String lname,
 			String email)
 	{
@@ -206,6 +289,8 @@ public class HostelSystem
 				user.setFname(fname);
 				user.setLname(lname);
 				user.setEmail(email);
+				System.out.println();
+				user.toString();
 			}	
 		}
 	}
@@ -250,8 +335,4 @@ public class HostelSystem
 			}	
 		}
 	}
-
-
-	
-	
 }

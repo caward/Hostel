@@ -3,7 +3,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class User {
-//	private static int totalUsers=0;
 	private static int userId = 1;
 	private String fname="";
 	private String lname="";
@@ -29,7 +28,7 @@ public class User {
 	
 	public void userInfo() 
 	{
-		System.out.println("user_id: " +user_id+"\n Name: "+fname+" "+lname+"\n Email: "+email+"\n Date Created: "+created);	
+		System.out.println("user_id: " +user_id+"\nName: "+fname+" "+lname+"\nEmail: "+email+"\nDate Created: "+created+"\n");	
 	}
 	
 	public int getUserId()
@@ -83,7 +82,5 @@ public class User {
 	public boolean isCreditCard()
 	{
 		return creditCardNumber!=0; 
-	}
-	
-	
+	}	
 }

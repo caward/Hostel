@@ -72,9 +72,5 @@ public class Bedroom {
 	public String getCity()
 	{
 		return city;
-	}
-	
-	
-	
-	
+	}	
 }

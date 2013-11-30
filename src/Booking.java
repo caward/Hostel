@@ -7,10 +7,12 @@ public class Booking
 	private static int bkId=0;
 	private int price = 0;
 	private int bk_id;
+	private String status; 
 	
 	public Booking()
 	{
 		bk_id=bkId ++;
+		status = "Ordered";
 	}
 
 	public ArrayList<Bedroom> getBeds() {
@@ -34,6 +36,11 @@ public class Booking
 		price=cost;
 	}
 	
+	public int getCost()
+	{
+		return price;
+	}
+	
 	public void addUser(User user1)
 	{
 		user = user1;
@@ -48,8 +55,22 @@ public class Booking
 		System.out.println("Beds: "+numBeds);
 		System.out.println("Booking ID: "+ bk_id);
 		System.out.println("Name: "+user.getFname()+" "+user.getLname());
-		System.out.println("Price: $"+price);		
+		System.out.println("Price: $"+price);
+		System.out.println("Status: "+status);
 	}
+	public String getStatus() {
+		return status;
+	}
+	
+	public int getBedNum()
+	{
+		return beds.size()/(beds.get(beds.size()-1).getDate()+1-beds.get(0).getDate());
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public String formatDate(int i)
 	{
 		String date = String.valueOf(i);
