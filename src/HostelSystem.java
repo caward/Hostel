@@ -221,7 +221,7 @@ public class HostelSystem
 		Calendar cal1 = Calendar.getInstance();
 		cal1.set(Integer.parseInt(date.substring(0, 4)), Integer.parseInt(date.substring(4,6)), Integer.parseInt(date.substring(6)));
 		numdays = daysBetween(cal.getTime(),cal.getTime());
-		int hotelDays = h.getDeadline()/12;
+		int hotelDays = h.getDeadline()/24;
 		if(hotelDays<=numdays)
 		{
 			penalty = Integer.parseInt(h.getPenalty().substring(0, h.getPenalty().length()-1));
