@@ -18,7 +18,8 @@ public class Booking
 	public ArrayList<Bedroom> getBeds() {
 		return beds;
 	}
-
+	
+	//Takes in array of beds
 	public void setBeds(ArrayList<Bedroom> beds) {
 		this.beds = beds;
 		for(Bedroom b:this.beds)
@@ -45,6 +46,8 @@ public class Booking
 	{
 		user = user1;
 	}
+	
+	//Prints booking information
 	public void print()
 	{
 		System.out.println("Booking successful! Here's the detail of your booking:");
@@ -62,6 +65,7 @@ public class Booking
 		return status;
 	}
 	
+	//Returns number of beds in booking
 	public int getBedNum()
 	{
 		return beds.size()/(beds.get(beds.size()-1).getDate()+1-beds.get(0).getDate());
@@ -70,7 +74,8 @@ public class Booking
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+	
+	//Formats the date
 	public String formatDate(int i)
 	{
 		String date = String.valueOf(i);

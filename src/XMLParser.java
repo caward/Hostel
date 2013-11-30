@@ -8,6 +8,7 @@ public class XMLParser {
 	static ArrayList<Hostel> hostels= new ArrayList<Hostel>();
 	Hostel hostel;
 	
+	//Parses xml file
 	public void load(String path, HostelSystem hostelSys)
 	{
 		try

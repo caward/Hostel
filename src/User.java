@@ -14,6 +14,7 @@ public class User {
 	private String created="";
 	private int user_id;
 	
+	//Creates User object
 	public User(String fname, String lname, String email)
 	{
 		this.fname = fname;
@@ -26,6 +27,7 @@ public class User {
 		userInfo();
 	}
 	
+	//Prints user info
 	public void userInfo() 
 	{
 		System.out.println("user_id: " +user_id+"\nName: "+fname+" "+lname+"\nEmail: "+email+"\nDate Created: "+created+"\n");	

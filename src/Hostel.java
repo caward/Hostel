@@ -30,7 +30,7 @@ public class Hostel {
 	{
 		return searches;
 	}
-	
+	//Checks to see if bed is available on certain date
 	public boolean isAvailable(int room, int bed, int date)
 	{
 		for(Bedroom b:bedrooms)
@@ -40,6 +40,8 @@ public class Hostel {
 		return false;
 	}
 	
+	//Takes in Checkout date, the number of days and Search object
+	//Finds rooms and adds to search
 	public void addToSearch(int days,int end,Search s)
 	{
 		int j=0;
@@ -77,12 +79,12 @@ public class Hostel {
 		}
 	}
 	
+	//Adds beds to a search object and adds search object to ArrayList 
 	public void realSearch2(int start, int end, int numbed)
 	{
 		searches.clear();
 		int count = end-start;
 		for(int j=0;j<bedrooms.size();j++)
-//		for(Bedroom b:bedrooms)
 		{
 			Search s = new Search();
 			for(int i = 0; i<numbed;i++)
@@ -98,6 +100,7 @@ public class Hostel {
 		printSearches(start,count);
 	}
 	
+	//Prints searches
 	public void printSearches(int date, int count)
 	{
 		System.out.println(getName()+" "+getCity());
@@ -124,6 +127,8 @@ public class Hostel {
 			}
 		}
 	}
+	
+	// checks to see if a bed is in any search
 	public boolean isPresentInAnySearch(int room, int bed)
 	{
 		for(Search s:searches)
@@ -272,6 +277,7 @@ public class Hostel {
 		bedrooms.add(bedroom);
 	}
 	
+	//Gives past and Present Search
 	public void generalsearch()
 	{
 		System.out.println(getName()+" "+getCity());
@@ -310,6 +316,7 @@ public class Hostel {
 		System.out.println();
 	}
 	
+	//Gives search by date
 	public void availableSearch(int startDate, int endDate)
 	{
 		System.out.println(getName()+" "+getCity());
@@ -320,10 +327,7 @@ public class Hostel {
 		int count=0;
 		int tempPrice=0;
 		int done = 0;
-		Bedroom bed; //= litr.next();
-//		date=bed.getDate();
-//		min=bed.getPrice();
-//		max=bed.getPrice();
+		Bedroom bed;
 		
 		while(litr.hasNext())//loops to correct date
 		{
@@ -384,6 +388,5 @@ public class Hostel {
 		String date = String.valueOf(i);
 		date= date.substring(4,6)+"/"+date.substring(6)+"/"+date.substring(0, 4);
 		return date;
-	}
-	
+	}	
 }

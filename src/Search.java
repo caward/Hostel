@@ -8,6 +8,8 @@ public class Search {
 	{
 		search_id = searchId++;
 	}
+	
+	//Checks if bed is in search object
 	public boolean contains(int bed, int room)
 	{
 		for(Bedroom b:beds)
@@ -18,6 +20,7 @@ public class Search {
 		return false;
 	}
 	
+	//Total Cost of a particular search
 	public int getTotalCost()
 	{
 		int cost = 0;

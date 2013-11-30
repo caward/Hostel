@@ -9,6 +9,7 @@ public class HostelSystem
 	ArrayList<Booking> bookings = new ArrayList<Booking>();
 	private double revenue=0;
 	
+	//Clears search list
 	public void clearAllSearches()
 	{
 		for(Hostel h:hostels)
@@ -26,6 +27,7 @@ public class HostelSystem
 		return revenue;
 	}
 	
+	//Gets hostel by name
 	public Hostel getHostel(String name)
 	{
 		for(Hostel h : hostels)
@@ -41,6 +43,8 @@ public class HostelSystem
  	public ArrayList<Hostel> getHostels() {
 		return hostels;
 	}
+ 	
+ 	//Checks to see if user id is valid
 	public boolean isUser(int id)
 	{
 		for(User user:users)
@@ -49,6 +53,8 @@ public class HostelSystem
 		}
 		return false;
 	}
+	
+	//Does general search on all hostels
 	public void search()
 	{
 		for(Hostel h:hostels)
@@ -57,6 +63,7 @@ public class HostelSystem
 		}
 	}
 	
+	//Does search on a specific city 
 	public void search(String city)
 	{
 		city = city.substring(1,city.length()-1);
@@ -70,6 +77,7 @@ public class HostelSystem
 		}
 	}
 	
+	//Does search from a given time frame
 	public void search(String city, int startDate, int endDate)
 	{
 		city = city.substring(1,city.length()-1);
@@ -95,6 +103,7 @@ public class HostelSystem
 		}	
 	}
 	
+	//Takes in searchid and userid and books a room
 	public void book(int searchId, int userId)
 	{
 		Search realSearch=null;
@@ -143,7 +152,7 @@ public class HostelSystem
 		
 	}
 	
-	
+	//Adds user info
 	public void addUser(String fname, String lname, String email)
 	{
 		User user = new User(fname,lname,email);
@@ -151,6 +160,7 @@ public class HostelSystem
 		user.toString();
 	}
 	
+	//Adds user info and credit card info
 	public void addUser(String fname, String lname, String email,long credit,int date, int code,String phone)
 	{
 		User user = new User(fname,lname,email);
@@ -197,6 +207,7 @@ public class HostelSystem
         return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
     }
 	
+	//Adds penalty to cancellation
 	public void cancellation(String hostelName, int date1,int price)
 	{	
 		int numdays;
@@ -223,6 +234,7 @@ public class HostelSystem
 		}
 	}
 	
+	//Cancels booking
 	public void cancel(int bookid)
 	{
 		String hotelName=null;
@@ -254,6 +266,7 @@ public class HostelSystem
 		
 	}
 	
+	//Prints a specific booking
 	public void viewBooking(int bookid)
 	{
 		for(Booking book:bookings)
@@ -266,6 +279,7 @@ public class HostelSystem
 		}
 	}
 	
+	//Gets occupancy
 	public int getBedNum()
 	{
 		int occupancy = 0;
@@ -279,6 +293,7 @@ public class HostelSystem
 		return occupancy;
 	}
 	
+	//Changes user info
 	public void changeUser(int userId, String fname, String lname,
 			String email)
 	{
@@ -295,6 +310,7 @@ public class HostelSystem
 		}
 	}
 	
+	//Changes user info and credit card
 	public void changeUser(int userId, String fname, String lname,
 			String email, long credit,int date, int code, String phone)
 	{
@@ -325,6 +341,8 @@ public class HostelSystem
 			}	
 		}
 	}
+	
+	//Prints all user info
 	public void viewUser(int userId)
 	{
 		for(User user:users)
@@ -333,6 +351,16 @@ public class HostelSystem
 			{
 				user.toString();
 			}	
+		}
+	}
+	
+	//Emails Users
+	public void emailUsers(String message)
+	{
+		for(User user:users)
+		{
+			user.getEmail();
+			//do something to email 
 		}
 	}
 }
